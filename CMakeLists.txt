@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 cmake_policy(VERSION 3.2)
 
 
+include(GNUInstallDirs)
+
 file(READ "glm/detail/setup.hpp" GLM_SETUP_FILE)
 string(REGEX MATCH "#define[ ]+GLM_VERSION_MAJOR[ ]+([0-9]+)" _ ${GLM_SETUP_FILE})
 set(GLM_VERSION_MAJOR "${CMAKE_MATCH_1}")
@@ -26,3 +28,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(test)
 
 endif(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+
+install(
+    FILES
+        ${PROJECT_SOURCE_DIR}/cmake/glm/glmConfig.cmake
+        ${PROJECT_SOURCE_DIR}/cmake/glm/glmConfig-version.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/glm
+)

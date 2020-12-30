@@ -13,10 +13,7 @@ endif()
 # Set the old GLM_INCLUDE_DIRS variable for backwards compatibility
 set(GLM_INCLUDE_DIRS ${_IMPORT_PREFIX})
 
-add_library(glm::glm INTERFACE IMPORTED)
-set_target_properties(glm::glm PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES ${GLM_INCLUDE_DIRS})
+include("${CMAKE_CURRENT_LIST_DIR}/glmTargets.cmake")
 
 mark_as_advanced(glm_DIR)
 set(_IMPORT_PREFIX)
-
